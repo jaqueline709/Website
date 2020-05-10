@@ -11,7 +11,7 @@ title: Projects
 
 Here are some projects I have recently completed:
 
-- [Exploratory Data Analysis with Tidyverse Tools](Jaqueline Ma Project 1 copy.rmd)
+- [Exploratory Data Analysis with Tidyverse Tools](/Jaqueline Ma Project 1 copy.rmd/)
 
-- [Modeling, Testing, and Classification](Jaqueline Ma Project 2 copy.rmd)
+- [Modeling, Testing, and Classification](/Jaqueline Ma Project 2 copy.rmd/)
 
