@@ -1,2 +1,0 @@
-"0","fullset%>%select(pages, author_gender)%>%group_by(author_gender)%>%  "
-"0","  summarize(mean(pages))%>%na.omit"

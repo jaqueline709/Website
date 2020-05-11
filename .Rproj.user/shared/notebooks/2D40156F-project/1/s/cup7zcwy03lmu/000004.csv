@@ -1,3 +1,0 @@
-"0",""
-"0","fullset$pages<-as.numeric(as.factor(fullset$pages))"
-"0","fullset%>%select(pages)%>%na.omit%>%summarize(medpage = median(fullset$pages, na.rm=T))"

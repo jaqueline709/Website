@@ -1,3 +1,0 @@
-"0","ggplot(fullset, aes(tempo, duration_ms, color = danceability))+geom_point(alpha=0.75)+  "
-"0","  ggtitle(""Tempo vs. Duration of Songs"")+ xlab(""Tempo"")+  "
-"0","  ylab(""Duration (in ms)"")"

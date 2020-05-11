@@ -1,7 +1,0 @@
-"0","#mus1 after na.omit becomes the same as music"
-"0",""
-"0","b1<-books%>%pivot_wider(names_from = ""genre"", values_from = ""genre"")"
-"0","b1%>%pivot_longer(col = c(""Mystery_Historical"":""Self Help_Religion"",  "
-"0","                          ""Nonfiction_Inspirational"", ""Christian_Inspirational"",  "
-"0","                          ""Christian_Spirituality""), names_to = ""genre"",  "
-"0","                  values_to = ""value"")%>%select(-value)"
