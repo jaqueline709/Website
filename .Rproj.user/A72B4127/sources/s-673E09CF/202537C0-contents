@@ -1,0 +1,167 @@
+---
+title: "Jaqueline Ma SDS Exploratory Project"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE, fig.align = "center", warning = F, message = F,
+tidy=TRUE, tidy.opts=list(width.cutoff=60), R.options=list(max.print=100))
+```
+
+#Introduction
+For my exploratory project, I decided to choose two datasets on topics that I love, music and books. For both datasets, the data was pulled from the kaggle website, where the *books* dataset was data on more than 20,000 books on Goodreads' most popular book lists (Goodreads.com is the world's largest site for readers and book recommendations - this description was found through a Google search). The *music* dataset was based on Spotify data and was made up of the top 100 songs on Spotify in 2018. The *books* dataset includes variables such as author average rating, author gender, author genres, author id, author name, author page url, author rating count, author review count, birthplace, book average rating, book full url, book id, book title, genre1, genre2, number of ratings, number of reviews, pages, publish date and score. The *music* dataset includes variables such as id, name, artists, genre, dancability, energy, key, loudness, mode, speechiness, acousticness, instrumentalness, liveness, valence, tempo, duration ms (in milliseconds), and time signature. 
+
+For the *books* dataset, the variables of book's url and author's page url were discarded for simplicity. In addition, the two genre variables were united to create one genre variable.
+
+I chose these variables since I love reading books and often use Goodreads as a website when looking up book descriptions or when trying to find new books to read. I also do a fair amount of listening to music and wanted to find out what the top songs on Spotify were (Spotify is the main way I listen to my music). 
+
+It is possible that there are some genres that might be the same between the *music* and the *books* dataset. However, since genres of music and genres of books often differ, I wouldn't be surprised if there were no associations between the two datasets even though they share a variable name.  
+
+
+```{r cars}
+  
+library(tidyverse)
+music <- read.csv("top2018.csv")
+glimpse(music)
+books <- read.csv("good_reads_final.csv")
+glimpse(books)
+books<- books%>%select(-book_fullurl, -author_page_url)
+books<- books%>%unite(genre_1, genre_2, col = "genre")
+
+mus1<-music%>%pivot_wider(names_from="genre", values_from = "genre")
+mus1%>%pivot_longer(col = c("Hip-Hop/Rap":"Alternative/Indie"), names_to = "genre",  
+                    values_to = "value")%>%na.omit()%>%select(-value)
+#mus1 after na.omit becomes the same as music
+
+b1<-books%>%pivot_wider(names_from = "genre", values_from = "genre")
+b1%>%pivot_longer(col = c("Mystery_Historical":"Self Help_Religion",  
+                          "Nonfiction_Inspirational", "Christian_Inspirational",  
+                          "Christian_Spirituality"), names_to = "genre",  
+                  values_to = "value")%>%select(-value)
+
+#b1 after selecting becomes the same as books
+
+```
+I used the pivot_longer and pivot_wider functions to demonstrate my use of these functions (the datasets were already tidy). 
+
+Below, I used full_join to join together the *books* and *music* datasets. I used this join since I did not think that any of the observations would match up (this was proven with running inner_join; there were no rows in common between the two datasets). To preserve all of my data, I used a full_join so that none of the observations were dropped (all of the data was kept) and the blanks were filled with NAs. A potential problem with this join is that I have to make sure to use na.omit when calculating my summary statistics to avoid getting an error in taking the mean of something that does not have a value for each observation (such as tempo). 
+
+```{R}
+music%>%inner_join(books)
+fullset<-music%>%full_join(books)
+```
+
+#Summary Statistics
+
+In the code below, I used filter, select, arrange, group_by, mutate and summarize to manipulate and explore the fully joined dataset. For the new variable that was created, I made a total author rating, which multiplied the average author rating by the total number of author reviews. This variable allowed you to see the total value of all the reviews that an author received.  
+
+```{R}
+fullset%>%filter(loudness>-5)%>%arrange(loudness)%>%select(loudness, id, name)%>%glimpse()
+fullset%>%select(author_gender)%>%count(author_gender)%>%distinct%>%na.omit
+fullset%>%group_by(genre)%>%summarize(n=n())%>%arrange(desc(n))
+fullset%>%mutate(tot_author_rate=author_average_rating*author_rating_count) %>%  
+  arrange(desc(tot_author_rate))%>%select(tot_author_rate, author_average_rating,  
+                                          author_rating_count, author_name)%>%glimpse()
+
+```
+In the first group of codes below, I used summary statistics on the numeric variables of danceability, tempo, and duration using mean, sd, count (n) and variance. Based on this code, duration seemed to have the most amount of variance. Next, I found the median, min and max number of pages (I had to make pages into a numeric vector) where I found out that the minimum number of pages was one! In addition, I found the IQR of the acousticness variable as well as the quantile of liveness which helped describe the variance found in acousticness and told me that a liveness of 0.350 was in the 10th quantile. Lastly, I found the correlation between danceability, tempo, and duration and based on this matrix, loudness and energy had the highest correlation. I could only use a correlation matrix between these variables due to having NAs if I included pages (since pages was originally from a different database).
+
+For the second group of codes, I used summary statistics on categorical variables of author id to count the number of distinct authors there were, which turned out to be 12,155. I also grouped by author gender to figure out the mean of the number of pages for each gender and discovered that male authors had a higher number of pages, on average. Lastly, I used summary statistics to group by the categorical variables of author genre and author name to then find the first in the numerical ratings of books, which was under the fiction genre with the author name of V.W. Singer.  
+
+
+```{R}
+#First group of code
+fullset%>%select(danceability, tempo, duration_ms)%>%na.omit%>%  
+  summarize(meandance = mean(danceability), meantempo = mean(tempo),  
+            meandur = mean(duration_ms), sddance = sd(danceability), sdtempo = sd(tempo),  
+            sddur = sd(duration_ms), vardance = var(danceability), vartempo = var(tempo),  
+            vardur = var(duration_ms), count= n())
+
+fullset$pages<-as.numeric(as.factor(fullset$pages))
+fullset%>%select(pages)%>%na.omit%>%summarize(medpage = median(fullset$pages, na.rm=T))
+fullset%>%select(pages)%>%na.omit%>%min
+fullset%>%select(pages)%>%na.omit%>%max
+fullset%>%group_by(genre)%>%select(acousticness)%>%na.omit%>%  
+  summarize(IQRacoustic = IQR(acousticness))%>%arrange(desc(IQRacoustic))
+fullset%>%select(liveness)%>%na.omit%>%mutate(quantile = ntile(liveness, seq(10)))%>%  
+  arrange(desc(quantile))%>%glimpse
+numbers <- fullset%>%select_if(is.numeric)%>%select(danceability, energy, key, loudness)%>%  
+  na.omit
+cor(numbers)
+
+#Second group of code
+fullset%>%select(author_id)%>%na.omit%>%distinct%>%count
+fullset%>%select(pages, author_gender)%>%group_by(author_gender)%>%  
+  summarize(mean(pages))%>%na.omit
+fullset%>%group_by(author_genres, author_name) %>%summarize(first=first(num_ratings))%>%  
+  arrange(first)
+```
+#Visualizations
+
+For the visualizations, I created ggplots to compare the variables that I ran summary statistics on. For the first ggplot, I used geom_point to create a scatterplot of tempo vs duration and colored the points with danceability. Based on the graph made, there appears to be higher danceability when tempo is high and a somewhat lower danceability when duration is high. However, most of the points appear to be clustered around the same duration so it may be difficult to find any apparent trends between these three variables.
+
+For the second plot, I made a correlation heatmap of my numeric variables of danceability, energy, key, and loudness with geom_tile. Based on this correlation plot, energy and loudness were the most strongly correlated and the other variables were not very strongly correlated with one another.
+
+For the last plot, the number of pages were compared with the author's gender and the bar plots were colored by gender. Based on this graph, there is a difference between the mean number of pages for male authors and the mean number of pages for female authors (male authors have a higher number of average pages in their books).  
+
+
+```{R}
+ggplot(fullset, aes(tempo, duration_ms, color = danceability))+geom_point(alpha=0.75)+  
+  ggtitle("Tempo vs. Duration of Songs")+ xlab("Tempo")+  
+  ylab("Duration (in ms)")
+
+tidycor <- cor(numbers)%>%as.data.frame%>%rownames_to_column%>%  
+  pivot_longer(-1, names_to = "name", values_to = "correlation")
+head(tidycor)
+tidycor%>%ggplot(aes(rowname, name, fill = correlation))+geom_tile()+  
+  scale_fill_gradient2(low="gray", mid = "snow3", high = "whitesmoke")+  
+  geom_text(aes(label=round(correlation,2)),color = "black", size = 4)+  
+  theme(axis.text.x = element_text(angle = 90))+ coord_fixed()+  
+  ggtitle("Correlation Matrix of Danceability,  
+  Energy, Key & Loudness")+xlab("Type of Variable")+ylab("Type of Variable")
+
+ggplot(fullset, aes(author_gender, pages, color = author_gender))+  
+  geom_bar(stat = "summary", aes(fill = author_gender))+ggtitle("Pages vs. Author Gender")+  
+  xlab("Author's Gender")+ylab("Pages")+  
+  scale_y_continuous(breaks=seq(0, 400, 50))
+
+```
+
+#K-Means Clustering
+
+For this part of the project, I used PAM to cluster my variables of tempo, duration_ms and danceability. To start, I processed the data by scaling my numeric variables and renaming this data pam_dat. The number of clusters was determined by creating an empty vector to hold mean silhouette widths and then used a for loop where i was equal to values from 1 to 10. The clusters were then created for values 1 to 10 and the silhouette widths were found. After this was created, a ggplot was created to make a line graph to find the lowest value on the graph (this value would be what I choose for the number of clusters). This value was determined to be three clusters since the lowest silhouette width was found at this cluster value.  
+
+```{R}
+library(cluster)
+pam_dat <- fullset%>%select(tempo, duration_ms, danceability)%>%na.omit%>%scale
+sil_width<-vector()
+for(i in 1:10){
+  pam_fit <- pam(pam_dat, k = i)
+  sil_width[i]<-pam_fit$silinfo$avg.width
+}
+ggplot()+geom_line(aes(x=1:10, y=sil_width))+scale_x_continuous(name = "k", breaks = 1:10)
+
+```
+After the number of clusters was determined, I clustered the three variables into three clusters. I ran the cluster analysis with PAM and then created a new variable called "cluster" that included the cluster number that the data was assigned to. I then plotted the variables on a ggplot with geom_point and colored the points by cluster. With this graph, I observed that there was some overlap in the clusters and that the clusters were based on the different ranges of tempo, since duration was somewhat constant as tempo increased.
+
+Lastly, I visualized all pairwise combinations of the three variables with ggpairs. Based on this visualization, the highest correlation was between danceability and tempo and the genre of Reggaeton had the highest peak in tempo. In addition, danceability was somewhat constant when comparing across genres, which can be seen with the danceability graph.  
+
+
+```{R}
+pam1 <- fullset%>%select(tempo, duration_ms, danceability)%>% na.omit%>%scale%>%pam(3)
+pam1
+pamclust<-fullset%>%select(tempo, duration_ms, danceability, genre)%>%na.omit%>%  
+  mutate(cluster = as.factor(pam1$clustering))
+pamclust%>%ggplot(aes(x=tempo, y=duration_ms, color = cluster))+ geom_point()+  
+  scale_color_manual(values=c("dark red", "dark salmon", "peachpuff3")) +xlab("Tempo")+  
+  ylab("Duration (in ms)")+  
+  ggtitle("Tempo vs Duration ")
+
+
+library(GGally)
+ggpairs(fullset, columns = c(15,16,5), aes(color = genre))
+```
+This concludes my exploratory project and summarizes my work researching Goodreads *books* and Spotify *music* data.
+
