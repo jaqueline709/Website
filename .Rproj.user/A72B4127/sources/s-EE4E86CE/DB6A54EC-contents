@@ -1,8 +1,8 @@
 ---
-title: 'Dogs! '
+title: Edgar Allen Poe
 author: Jaqueline Ma
-date: '2020-05-09'
-slug: dogs
+date: '2020-05-11'
+slug: edgar-allen-poe
 categories: []
 tags: []
 description: ''
@@ -32,8 +32,3 @@ string = "Once upon a midnight dreary, while I pondered, weak and weary, Over ma
 string.lower()
 string
 ```
-
-
-
-
-

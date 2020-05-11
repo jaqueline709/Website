@@ -2,7 +2,7 @@
 title: Edgar Allen Poe
 author: Jaqueline Ma
 date: '2020-05-10'
-slug: dogs
+slug: edgar allen poe
 categories: []
 tags: []
 description: ''
