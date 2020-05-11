@@ -1,0 +1,6 @@
+"0",""
+"0","ggplot(fullset, aes(author_gender, pages, color = author_gender))+  "
+"0","  geom_bar(stat = ""summary"", aes(fill = author_gender))+ggtitle(""Pages vs. Author Gender"")+  "
+"0","  xlab(""Author's Gender"")+ylab(""Pages"")+  "
+"0","  scale_y_continuous(breaks=seq(0, 400, 50))"
+"0",""

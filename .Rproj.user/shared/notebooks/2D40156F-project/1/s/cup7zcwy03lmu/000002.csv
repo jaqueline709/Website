@@ -1,0 +1,6 @@
+"0","#First group of code"
+"0","fullset%>%select(danceability, tempo, duration_ms)%>%na.omit%>%  "
+"0","  summarize(meandance = mean(danceability), meantempo = mean(tempo),  "
+"0","            meandur = mean(duration_ms), sddance = sd(danceability), sdtempo = sd(tempo),  "
+"0","            sddur = sd(duration_ms), vardance = var(danceability), vartempo = var(tempo),  "
+"0","            vardur = var(duration_ms), count= n())"

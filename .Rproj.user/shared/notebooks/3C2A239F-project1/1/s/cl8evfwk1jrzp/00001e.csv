@@ -1,0 +1,6 @@
+"0","tidycor%>%ggplot(aes(rowname, name, fill = correlation))+geom_tile()+  "
+"0","  scale_fill_gradient2(low=""gray"", mid = ""snow3"", high = ""whitesmoke"")+  "
+"0","  geom_text(aes(label=round(correlation,2)),color = ""black"", size = 4)+  "
+"0","  theme(axis.text.x = element_text(angle = 90))+ coord_fixed()+  "
+"0","  ggtitle(""Correlation Matrix of Danceability,  "
+"0","  Energy, Key & Loudness"")+xlab(""Type of Variable"")+ylab(""Type of Variable"")"

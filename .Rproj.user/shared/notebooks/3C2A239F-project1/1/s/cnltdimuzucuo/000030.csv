@@ -1,0 +1,2 @@
+"0","fullset%>%group_by(author_genres, author_name) %>%summarize(first=first(num_ratings))%>%  "
+"0","  arrange(first)"
