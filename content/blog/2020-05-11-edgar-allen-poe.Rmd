@@ -1,11 +1,11 @@
 ---
-title: Edgar Allen Poe
-author: Jaqueline Ma
+title: "Nevermore!"
+author: "Jaqueline Ma"
 date: '2020-05-11'
-slug: edgar-allen-poe
-categories: []
-tags: []
 description: ''
+slug: edgar-allen-poe
+tags: []
+categories: []
 ---
 
 ```{r setup, include=FALSE}
@@ -17,7 +17,7 @@ So during one of our classes, we went over mutliple regular expressions (regex),
 
 I'm not only able to make a string that includes data (such as an Edgar Allen Poe line) but I can also use Python to perform methods such as making all of the words lowercase, removing the punctuation, splitting the string at every whitespace, and matching a phrase to the original string. 
 
-```{r setup, include=FALSE, echo=TRUE}
+```{r}
 library(reticulate)
 use_python("/usr/bin/python")
 ```
@@ -28,22 +28,27 @@ import numpy as np
 import re
 string = "Once upon a midnight dreary, while I pondered, weak and weary, Over many a quaint and curious volume of forgotten lore— While I nodded, nearly napping, suddenly there came a tapping, As of some one gently rapping, rapping at my chamber door—"
 print(string)
-string1_lower=string.lower()
-print(string1)
-string2_nopunct = re.sub(r'[\.\,\—]', "", string1)
-print(string2_nopunct)
+```
 
+```{python}
+string1_lower=string.lower()
+print(string1_lower)
+```
+
+```{python}
+string2_nopunct = re.sub(r'[\.\,\—]', "", string1_lower)
+print(string2_nopunct)
+```
+
+```{python}
 string3_split = re.split(r'[\s]', string2_nopunct)
 print(string3_split)
+```
+
+```{python}
 re.findall(r'[wW]hile[^—]+', string)
 ```
-```{python}
 
-
-
-
-
-````
 
 
 
