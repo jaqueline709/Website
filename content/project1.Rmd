@@ -21,7 +21,7 @@ It is possible that there are some genres that might be the same between the *mu
 
 
 ```{r cars}
-  
+install.packages("tidyverse")
 library(tidyverse)
 music <- read.csv("top2018.csv")
 glimpse(music)
