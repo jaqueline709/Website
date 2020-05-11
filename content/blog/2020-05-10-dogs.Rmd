@@ -1,7 +1,7 @@
 ---
-title: 'Dogs! '
+title: Dogs!
 author: Jaqueline Ma
-date: '2020-05-09'
+date: '2020-05-10'
 slug: dogs
 categories: []
 tags: []
@@ -10,3 +10,13 @@ description: ''
 ## Dogs
 
 So during one of our classes, we briefly touched upon the different properties/data that a dog can have, such as name, breed, size, etc. I'm not only able to make a string that includes this data but I can also use Python to perform methods to, such 
+
+{python}
+fruit_prices = {
+'apple': 0.65,
+'mango': 1.50,
+'strawberry': '$3/lb',
+'musk melon': 'unavailable'
+}
+fruit_prices['mango']
+
