@@ -1,0 +1,10 @@
+---
+title: "Projects"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+[Project1](/project1)
+[Project2](/project2)
