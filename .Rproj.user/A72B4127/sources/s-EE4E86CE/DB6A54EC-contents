@@ -7,6 +7,10 @@ categories: []
 tags: []
 description: ''
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+```
 ## Edgar Allen Poe Lines
 
 So during one of our classes, we went over mutliple regular expressions (regex), where you can select rows where a variable matches a pattern or capture groups as well as substituting and splitting groups.

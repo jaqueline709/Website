@@ -2,19 +2,19 @@
     "collab_server" : "",
     "contents" : "",
     "created" : 1589230869962.000,
-    "dirty" : true,
+    "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
     "hash" : "0",
     "id" : "DB6A54EC",
-    "lastKnownWriteTime" : 1589240257,
-    "last_content_update" : 1589240265781,
+    "lastKnownWriteTime" : 1589240683,
+    "last_content_update" : 1589240683659,
     "path" : "~/Desktop/Website/content/blog/2020-05-11-edgar-allen-poe.Rmd",
     "project_path" : "content/blog/2020-05-11-edgar-allen-poe.Rmd",
     "properties" : {
-        "cursorPosition" : "39,0",
+        "cursorPosition" : "43,0",
         "last_setup_crc32" : "EE4E86CEcb90373c",
-        "scrollLine" : "0"
+        "scrollLine" : "39"
     },
     "read_only" : false,
     "read_only_alternatives" : [
