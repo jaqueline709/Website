@@ -21,6 +21,7 @@ It is possible that there are some genres that might be the same between the *mu
 
 
 ```{r cars}
+  
 library(tidyverse)
 music <- read.csv("top2018.csv")
 glimpse(music)
@@ -136,7 +137,7 @@ For this part of the project, I used PAM to cluster my variables of tempo, durat
 library(cluster)
 pam_dat <- fullset%>%select(tempo, duration_ms, danceability)%>%na.omit%>%scale
 sil_width<-vector()
-for(i in 1:10){
+for(i in 2:10){
   pam_fit <- pam(pam_dat, k = i)
   sil_width[i]<-pam_fit$silinfo$avg.width
 }
