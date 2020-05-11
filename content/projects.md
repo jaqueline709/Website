@@ -11,7 +11,7 @@ title: Projects
 
 Here are some projects I have recently completed:
 
-- [Exploratory Data Analysis with Tidyverse Tools](/project1.Rmd/)
+- [Exploratory Data Analysis with Tidyverse Tools](/project1)
 
-- [Modeling, Testing, and Classification](/project2.Rmd/)
+- [Modeling, Testing, and Classification](/project2)
 
