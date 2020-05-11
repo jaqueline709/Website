@@ -1,0 +1,4 @@
+"0","hook_output = knit_hooks$get('output')
+"
+"2","Error: object 'knit_hooks' not found
+"
