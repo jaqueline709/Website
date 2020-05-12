@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1589242646673.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "60A34FEE",
+    "lastKnownWriteTime" : 1589242646,
+    "last_content_update" : 1589242646,
+    "path" : "~/Desktop/Website/content/blog/2020-05-11-nevermore.Rmd",
+    "project_path" : "content/blog/2020-05-11-nevermore.Rmd",
+    "properties" : {
+        "cursorPosition" : "9,0",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

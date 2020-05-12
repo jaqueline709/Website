@@ -2,12 +2,11 @@
 title: "Nevermore!"
 author: "Jaqueline Ma"
 date: '2020-05-11'
-output: 
-  blogdown::html_page:
-    toc: true
-    toc_depth: 1
-    number_sections: true
-    fig_width: 6
+description: ''
+slug: edgar-allen-poe
+categories: []
+tags: []
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
