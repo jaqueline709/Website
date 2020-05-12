@@ -48,6 +48,8 @@ print(string3_split)
 
 ```{python}
 re.findall(r'[wW]hile[^—]+', string)
+
+![The Raven](img/raven_p.jpg)
 ```
 
 
