@@ -1,0 +1,34 @@
+---
+title: "Nevermore!"
+author: "Jaqueline Ma"
+date: '2020-05-11'
+description: ''
+slug: edgar-allen-poe
+categories: []
+tags: []
+output: html_document
+---
+
+<div id="edgar-allen-poe-lines" class="section level2">
+<h2><span class="header-section-number">0.1</span> Edgar Allen Poe Lines</h2>
+<p>So during one of our classes, we went over mutliple regular expressions (regex), where you can select rows where a variable matches a pattern or capture groups as well as substituting and splitting groups.</p>
+<p>I’m not only able to make a string that includes data (such as an Edgar Allen Poe line) but I can also use Python to perform methods such as making all of the words lowercase, removing the punctuation, splitting the string at every whitespace, and matching a phrase to the original string.</p>
+<pre class="r"><code>library(reticulate)
+use_python(&quot;/usr/bin/python&quot;)</code></pre>
+<pre class="python"><code>import numpy as np
+import re
+string = &quot;Once upon a midnight dreary, while I pondered, weak and weary, Over many a quaint and curious volume of forgotten lore— While I nodded, nearly napping, suddenly there came a tapping, As of some one gently rapping, rapping at my chamber door—&quot;
+print(string)
+## Once upon a midnight dreary, while I pondered, weak and weary, Over many a quaint and curious volume of forgotten lore— While I nodded, nearly napping, suddenly there came a tapping, As of some one gently rapping, rapping at my chamber door—</code></pre>
+<pre class="python"><code>string1_lower=string.lower()
+print(string1_lower)
+## once upon a midnight dreary, while i pondered, weak and weary, over many a quaint and curious volume of forgotten lore— while i nodded, nearly napping, suddenly there came a tapping, as of some one gently rapping, rapping at my chamber door—</code></pre>
+<pre class="python"><code>string2_nopunct = re.sub(r&#39;[\.\,\—]&#39;, &quot;&quot;, string1_lower)
+print(string2_nopunct)
+## once upon a midnight dreary while i pondered weak and weary over many a quaint and curious volume of forgotten lore while i nodded nearly napping suddenly there came a tapping as of some one gently rapping rapping at my chamber door</code></pre>
+<pre class="python"><code>string3_split = re.split(r&#39;[\s]&#39;, string2_nopunct)
+print(string3_split)
+## [&#39;once&#39;, &#39;upon&#39;, &#39;a&#39;, &#39;midnight&#39;, &#39;dreary&#39;, &#39;while&#39;, &#39;i&#39;, &#39;pondered&#39;, &#39;weak&#39;, &#39;and&#39;, &#39;weary&#39;, &#39;over&#39;, &#39;many&#39;, &#39;a&#39;, &#39;quaint&#39;, &#39;and&#39;, &#39;curious&#39;, &#39;volume&#39;, &#39;of&#39;, &#39;forgotten&#39;, &#39;lore&#39;, &#39;while&#39;, &#39;i&#39;, &#39;nodded&#39;, &#39;nearly&#39;, &#39;napping&#39;, &#39;suddenly&#39;, &#39;there&#39;, &#39;came&#39;, &#39;a&#39;, &#39;tapping&#39;, &#39;as&#39;, &#39;of&#39;, &#39;some&#39;, &#39;one&#39;, &#39;gently&#39;, &#39;rapping&#39;, &#39;rapping&#39;, &#39;at&#39;, &#39;my&#39;, &#39;chamber&#39;, &#39;door&#39;]</code></pre>
+<pre class="python"><code>re.findall(r&#39;[wW]hile[^—]+&#39;, string)
+## [&#39;while I pondered, weak and weary, Over many a quaint and curious volume of forgotten lore&#39;, &#39;While I nodded, nearly napping, suddenly there came a tapping, As of some one gently rapping, rapping at my chamber door&#39;]</code></pre>
+</div>

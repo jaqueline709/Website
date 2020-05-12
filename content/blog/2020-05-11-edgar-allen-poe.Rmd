@@ -49,6 +49,8 @@ print(string3_split)
 
 ```{python}
 re.findall(r'[wW]hile[^—]+', string)
+
+![](/blog/2020-05-11-edgar-allen-poe_files/raven.jpg)
 ```
 
 
