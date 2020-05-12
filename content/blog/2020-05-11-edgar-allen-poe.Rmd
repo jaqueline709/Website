@@ -3,7 +3,7 @@ title: "Nevermore!"
 author: "Jaqueline Ma"
 date: '2020-05-11'
 output: 
-  blogdown::page:
+  blogdown::html_page:
     toc: true
     toc_depth: 1
     number_sections: true
