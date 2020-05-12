@@ -31,4 +31,5 @@ print(string3_split)
 ## [&#39;once&#39;, &#39;upon&#39;, &#39;a&#39;, &#39;midnight&#39;, &#39;dreary&#39;, &#39;while&#39;, &#39;i&#39;, &#39;pondered&#39;, &#39;weak&#39;, &#39;and&#39;, &#39;weary&#39;, &#39;over&#39;, &#39;many&#39;, &#39;a&#39;, &#39;quaint&#39;, &#39;and&#39;, &#39;curious&#39;, &#39;volume&#39;, &#39;of&#39;, &#39;forgotten&#39;, &#39;lore&#39;, &#39;while&#39;, &#39;i&#39;, &#39;nodded&#39;, &#39;nearly&#39;, &#39;napping&#39;, &#39;suddenly&#39;, &#39;there&#39;, &#39;came&#39;, &#39;a&#39;, &#39;tapping&#39;, &#39;as&#39;, &#39;of&#39;, &#39;some&#39;, &#39;one&#39;, &#39;gently&#39;, &#39;rapping&#39;, &#39;rapping&#39;, &#39;at&#39;, &#39;my&#39;, &#39;chamber&#39;, &#39;door&#39;]</code></pre>
 <pre class="python"><code>re.findall(r&#39;[wW]hile[^—]+&#39;, string)
 ## [&#39;while I pondered, weak and weary, Over many a quaint and curious volume of forgotten lore&#39;, &#39;While I nodded, nearly napping, suddenly there came a tapping, As of some one gently rapping, rapping at my chamber door&#39;]</code></pre>
+<img src="/blog/2020-05-11-edgar-allen-poe_files/raven.jpg" alt="Edgar Allen Poe's *The Raven*" width="672" />
 </div>
