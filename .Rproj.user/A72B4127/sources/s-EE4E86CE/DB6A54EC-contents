@@ -4,8 +4,9 @@ author: "Jaqueline Ma"
 date: '2020-05-11'
 description: ''
 slug: edgar-allen-poe
+categories: ["R"]
 tags: []
-categories: []
+
 ---
 
 ```{r setup, include=FALSE}
