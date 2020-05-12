@@ -12,7 +12,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(collapse = TRUE)
 ```
-## Edgar Allen Poe Lines
+## Edgar Allen Poe
 
 So during one of our classes, we went over mutliple regular expressions (regex), where you can select rows where a variable matches a pattern or capture groups as well as substituting and splitting groups.
 
@@ -49,7 +49,7 @@ print(string3_split)
 ```{python}
 re.findall(r'[wW]hile[^—]+', string)
 
-![The Raven](img/raven_p.jpg)
+![](/blog/2020-05-11-edgar-allen-poe_files/raven.jpg)
 ```
 
 
